@@ -1,6 +1,7 @@
 const assert = require('assert');
 const invert = require('../lib/invert-transformer');
 const grayscale = require('../lib/grayscale-transformer');
+const saturateBlue = require('../lib/saturate-blue-transformer');
 
 describe('transformers', () => {
 
@@ -11,7 +12,7 @@ describe('transformers', () => {
             g: 100,
             b: 205
         });
-
+        console.log(transformed);
         assert.deepEqual(transformed, {
             r: 221,
             g: 155,
@@ -35,5 +36,19 @@ describe('transformers', () => {
         });
     });
 
-    // TODO: add a third transformer
+    it('saturate blue', () => {
+        // HINT: grayscale assigns the average of all three colors
+        // as the new value for each color
+        const transformed = saturateBlue({
+            r: 34,
+            g: 100,
+            b: 100
+        });
+
+        assert.deepEqual(transformed, {
+            r: 19,
+            g: 85,
+            b: 150
+        });
+    });
 });
